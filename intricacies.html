@@ -32,15 +32,16 @@
         </svg>
     </div>
 
-    <p>PLSAR ships with everything you need to build a
-        solid web system including dependency injection, http routing,
+    <p><strong>PLSAR</strong> ships with everything you need to build a
+        web system including dependency injection, http routing,
         data persistence and view data binding. Let's quickly
     go through each.</p>
 
     <h2>The Server</h2>
     <p>The server is built on the HttpExchange. Is time tested,
     simple and can handle mid size enterprise requirements.
-    To initialize PLSAR you need to initialize the server.</p>
+    To initialize <strong>PLSAR</strong> you need to initialize
+        the server.</p>
 
     <pre>
             <code>
@@ -49,7 +50,7 @@ import plsar.PLSAR
 fun main(){
     val plsar = PLSAR.Builder()
                 .port(8080)
-                .executors(20)
+                .executors(30)
                 .create()
     plsar.start()
 }
@@ -91,17 +92,70 @@ class TodoRouter {
         return "hello world"
     }
 
+    @Get("/create")
+    @Design("/layouts/default.ktv")
+    fun text(): String {
+        return "/pages/create.ktv"
+    }
+
 }
             </code>
         </pre>
 
-    <p>Here we defined a http endpoint which is mapped to the
-    text method. HttpRouter methods can return plain text,
-    json, or data bound views which we will go into.</p>
+    <p>Here we defined two http endpoints. One which serves
+        up plain text, the other serves up a view.
+        HttpRouter methods can return plain text,
+    json, or data bound views which we will go into.
+    </p>
+
+    <p>Notice the <span class="highlight">@Design</span>
+    annotation. The design specified wraps your view with the
+    given layout.</p>
 
     <p>Annotating the class with
-        <span class="highlight">@HttpRouter</span> tells PLSAR
-    what to search for when a request is made to your system.</p>
+        <span class="highlight">@HttpRouter</span> tells <strong>PLSAR</strong>
+        what to search for when a request is made to your system.</p>
+
+
+    <h3>Interceptors</h3>
+    <p>If you have lived in the Java World and have done web based
+    stuff before then you are familiar with Filters. Interceptors act
+    much like filters allowing you to perform some action before a
+    request is complete.</p>
+
+    <p>Let's update our <span class="highlight">Main.kt</span></p>
+
+    <pre>
+        <code>
+import plsar.PLSAR
+
+fun main(){
+    val plsar = PLSAR.Builder()
+                .port(8080)
+                .executors(30)
+                .create()
+    plsar.registerInterceptor(MockInterceptor())
+    plsar.start()
+}
+        </code>
+    </pre>
+
+
+
+    <h3>View Data-Binding</h3>
+    <p>Much like the .JSP tag library, <strong>PLSAR</strong> boasts it's own
+    view tag library.</p>
+
+    <pre>
+        <code>
+&lt;eos:each in="${people}" item="person"&gt;
+    &lt;span&gt;${person.name}&lt;/span&gt;
+&lt;/eos:each&gt;</code>
+    </pre>
+
+    <p> What's better is you don't need a special
+        view extension, you can use what ever extension you please:
+        .htm, etc...</p>
 
     <p><a href="index.html">Home</a></p>
 
