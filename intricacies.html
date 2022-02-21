@@ -1,0 +1,115 @@
+<html>
+<head>
+    <title>PLSAR : Kotlin Eco-System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta name="keywords" content="kotlin, web framework, kotlin framework"/>
+
+    <link href="benefit/icon.png" rel="icon" type="image/png" />
+    <link rel="stylesheet" href="benefit/css/default.css">
+
+</head>
+<body>
+
+<svg id="peoo" version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 67" width="54" height="67">
+    <path class="plsar" d="m38.6 11.3l11.8 48.1l-47.6-13.8z" />
+</svg>
+
+<div class="inner">
+    <div class="logo-wrapper">
+        <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 67" width="54" height="67">
+            <defs>
+                <linearGradient id="g1" x1="26.6" y1="59.4" x2="26.6" y2="11.3" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#d23388"/>
+                    <stop offset="1" stop-color="#1d1c22"/>
+                </linearGradient>
+            </defs>
+            <style>
+                .plsar { fill: url(#g1) }
+            </style>
+            <path class="plsar" d="m38.6 11.3l11.8 48.1l-47.6-13.8z" />
+        </svg>
+    </div>
+
+    <p>PLSAR ships with everything you need to build a
+        solid system including dependency injection, http routing,
+        data persistence and view data binding. Let's quickly
+    go through each.</p>
+
+    <h2>The Server</h2>
+    <p>The server is built on the HttpExchange. Is time tested,
+    simple and can handle mid size enterprise requirements.
+    To initialize PLSAR you need to initialize the server.</p>
+
+    <pre>
+            <code>
+import plsar.PLSAR
+
+fun main(){
+    val plsar = PLSAR.Builder()
+                .port(8080)
+                .executors(20)
+                .create()
+    plsar.start()
+}
+            </code>
+        </pre>
+
+
+    <h2>Dependency Injection</h2>
+    <p>When <span class="highlight">.start()</span> gets called, a
+    dependency injection container gets built with all the classes
+    you defined as dependencies via annotations. They are readily
+    available via the <span class="highlight">@Inject</span> declaration.</p>
+
+    <h3>Example</h3>
+    <pre>
+            <code>
+@Inject
+var cache: PLSAR.Cache? = null
+            </code>
+    </pre>
+
+
+    <h2>Http Routing</h2>
+    <p>Http routing is routing of http requests to
+    functions defined within a class. This is where
+    <span class="highlight">@HttpRouter</span> comes into play.
+    It serves as a binding class, binding method calls to request
+    paths.</p>
+
+    <pre>
+            <code>
+
+@HttpRouter
+class TodoRouter {
+
+    @Text
+    @Get("/")
+    fun text(): String {
+        return "hello world"
+    }
+
+}
+            </code>
+        </pre>
+
+    <p>Here we defined a http endpoint which is mapped to the
+    text method. HttpRouter methods can return plain text,
+    json, or data bound views which we will go into.</p>
+
+    <p>Annotating the class with
+        <span class="highlight">@HttpRouter</span> tells PLSAR
+    what to search for when a request is made to your system.</p>
+
+    <p><a href="index.html">Home</a></p>
+
+
+    <p>Contact Us <br/><a href="mailto:dev@plsar.net">dev@plsar.net</a></p>
+</div>
+
+
+</body>
+</html>
+

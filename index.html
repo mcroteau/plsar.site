@@ -1,0 +1,65 @@
+<html>
+<head>
+    <title>PLSAR : Kotlin Eco-System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta name="keywords" content="kotlin, web framework, kotlin framework"/>
+
+    <link href="benefit/icon.png" rel="icon" type="image/png" />
+    <link rel="stylesheet" href="benefit/css/default.css">
+
+</head>
+<body>
+
+    <svg id="peoo" version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 67" width="54" height="67">
+        <path class="plsar" d="m38.6 11.3l11.8 48.1l-47.6-13.8z" />
+    </svg>
+
+    <div class="inner">
+        <div class="logo-wrapper">
+            <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 67" width="54" height="67">
+                <defs>
+                    <linearGradient id="g1" x1="26.6" y1="59.4" x2="26.6" y2="11.3" gradientUnits="userSpaceOnUse">
+                        <stop offset="0" stop-color="#d23388"/>
+                        <stop offset="1" stop-color="#1d1c22"/>
+                    </linearGradient>
+                </defs>
+                <style>
+                    .plsar { fill: url(#g1) }
+                </style>
+                <path class="plsar" d="m38.6 11.3l11.8 48.1l-47.6-13.8z" />
+            </svg>
+            <h1 class="logo">PLSAR</h1>
+            <span class="tagline">eco-system</span>
+        </div>
+
+        <p>PLSAR Kotlin based web framework has a built in server which
+            handles dependency injection, http routing, data persistence and
+            view data binding or templating</p>
+
+
+        <h2>Get Started</h2>
+        <pre>
+            <code>
+import plsar.PLSAR
+
+fun main(){
+    val plsar = PLSAR.Builder()
+                .port(8080)
+                .executors(20)
+                .create()
+    plsar.start()
+}
+            </code>
+        </pre>
+
+        <p><a href="intricacies.html">How to build a Http System</a></p>
+
+        <p>Contact Us <br/><a href="mailto:dev@plsar.net">dev@plsar.net</a></p>
+    </div>
+
+
+</body>
+</html>
+
