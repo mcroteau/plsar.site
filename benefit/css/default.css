@@ -116,12 +116,12 @@ input[type="submit"].button{
     width:501px;
     margin:0px auto 230px;
 }
-a{color:#d23388;color:#fff;border-bottom:dotted 1px #fff}
+a{color:#d23388;color:#36ffff;border-bottom:dotted 1px #36ffff}
 
 strong{font-weight: 500}
 #peoo{
     height:50px;
-    stroke:#fff;
+    stroke:#36ffff;
 }
 #peoo .plsar{
     fill:transparent;

@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>PLSAR : Kotlin Eco-System</title>
+    <title>PLSAR : Kotlin Framework</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -9,11 +9,31 @@
     <link href="benefit/icon.png" rel="icon" type="image/png" />
     <link rel="stylesheet" href="benefit/css/default.css">
 
+    <style>
+        .peoo{
+            height:20px;
+            width:20px;
+            background-color: transparent
+        }
+        .square{border:solid 1px #36ffff;}
+        .triangle{height:30px; width:30px;}
+        .triangle .plsar{fill:transparent !important; stroke: #36ffff}
+        .center, .center p, .center h3{text-align: center}
+    </style>
+    <style>
+        .plsar-init{stroke:#EA0782;fill:transparent}
+        #peoo{height:40px; margin-left:-50px; margin-top:40px;}
+        .logo-wrapper{margin-top:30px !important;color: #58ff69}
+        body{
+            background: rgb(0,0,0);
+            background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 65%, rgb(54, 255, 255) 100%);
+        }
+    </style>
 </head>
 <body>
 
     <svg id="peoo" version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 67" width="54" height="67">
-        <path class="plsar" d="m38.6 11.3l11.8 48.1l-47.6-13.8z" />
+        <path class="plsar-init" d="m38.6 11.3l11.8 48.1l-47.6-13.8z" />
     </svg>
 
     <div class="inner">
@@ -22,7 +42,7 @@
                 <defs>
                     <linearGradient id="g1" x1="26.6" y1="59.4" x2="26.6" y2="11.3" gradientUnits="userSpaceOnUse">
                         <stop offset=".3" stop-color="#000"/>
-                        <stop offset="1" stop-color="#d60776"/>
+                        <stop offset="1" stop-color="#36ffff"/>
                     </linearGradient>
                 </defs>
                 <style>
@@ -58,11 +78,113 @@ fun main(){
             </code>
         </pre>
 
-        <p><a href="intricacies.html"><h3>Getting Started</h3></a></p>
+        <div class="center">
+            <p><a href="intricacies.html"><h3>Getting Started</h3></a></p>
+            <p><a href="mailto:dev@plsar.net">dev@plsar.net</a></p>
+        </div>
 
-        <p><a href="mailto:dev@plsar.net">dev@plsar.net</a></p>
     </div>
 
+
+<script>
+    function RandomObjectMover(obj, container) {
+        this.$object = obj;
+        this.$container = container;
+        this.container_is_window = container === window;
+        this.pixels_per_second = 340;
+        this.current_position = { x: 0, y: 0 };
+        this.is_running = false;
+    }
+
+    // Set the speed of movement in Pixels per Second.
+    RandomObjectMover.prototype.setSpeed = function(pxPerSec) {
+        this.pixels_per_second = pxPerSec;
+    }
+
+    RandomObjectMover.prototype._getContainerDimensions = function() {
+        if (this.$container === window) {
+            return { 'height' : this.$container.innerHeight, 'width' : this.$container.innerWidth };
+        } else {
+            return { 'height' : this.$container.clientHeight, 'width' : this.$container.clientWidth };
+        }
+    }
+
+    RandomObjectMover.prototype._generateNewPosition = function() {
+
+        // Get container dimensions minus div size
+        var containerSize = this._getContainerDimensions();
+        var availableHeight = containerSize.height - this.$object.clientHeight;
+        var availableWidth = containerSize.width - this.$object.clientHeight;
+
+        // Pick a random place in the space
+        var y = Math.floor(Math.random() * availableHeight);
+        var x = Math.floor(Math.random() * availableWidth);
+
+        return { x: x, y: y };
+    }
+
+    RandomObjectMover.prototype._calcDelta = function(a, b) {
+        var dx   = a.x - b.x;
+        var dy   = a.y - b.y;
+        var dist = Math.sqrt( dx*dx + dy*dy );
+        return dist;
+    }
+
+    RandomObjectMover.prototype._moveOnce = function() {
+        // Pick a new spot on the page
+        var next = this._generateNewPosition();
+
+        // How far do we have to move?
+        var delta = this._calcDelta(this.current_position, next);
+
+        // console.log('delta', delta, this.current_position, next)
+
+        // Speed of this transition, rounded to 2DP
+        var speed = Math.round((delta / this.pixels_per_second) * 100) / 100;
+
+        // console.log(this.current_position, this.pixels_per_second, next, delta, speed);
+
+        this.$object.style.transition='transform '+speed+'s linear';
+        this.$object.style.transform='translate3d('+next.x+'px, '+next.y+'px, 0)';
+
+        // Save this new position ready for the next call.
+        this.current_position = next;
+
+    };
+
+    RandomObjectMover.prototype.start = function() {
+
+        if (this.is_running) {
+            return;
+        }
+
+        // Make sure our object has the right css set
+        this.$object.willChange = 'transform';
+        this.$object.pointerEvents = 'auto';
+
+        this.boundEvent = this._moveOnce.bind(this)
+
+        // Bind callback to keep things moving
+        this.$object.addEventListener('transitionend', this.boundEvent);
+
+        // Start it moving
+        this._moveOnce();
+
+        this.is_running = true;
+    }
+
+
+
+    let elements = document.getElementsByClassName('peoo')
+    for(z = 0; z < elements.length; z++){
+        let element = elements[z]
+        var x = new RandomObjectMover(element, window);
+        x.setSpeed(parseInt(140));
+        x.start();
+    }
+
+
+</script>
 
 </body>
 </html>
