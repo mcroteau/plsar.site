@@ -19,6 +19,9 @@ header {
 html,body{
     padding:0px;
     margin:0px;
+    text-align: center;
+    background: rgb(0,0,0);
+    background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 65%, rgba(239,7,132,1) 100%);
 }
 
 html,body,
@@ -44,7 +47,7 @@ pre{
     margin:0px auto 40px;
     padding:0px 20px;
     text-align: left;
-    background: #000;
+    background: #121111;
     overflow: scroll;
     word-wrap: normal;
     white-space: pre !important;
@@ -77,8 +80,7 @@ a{
 .clear{clear:both;}
 
 
-body{text-align: center;background:#111212}
-.tagline{font-size:23px;font-weight:100;bottom: 0px;display:block;}
+.tagline{font-size:23px;font-weight:100;display:block;}
 p{font-size:23px;font-weight: 300;}
 
 .button,
@@ -106,6 +108,7 @@ input[type="submit"].button{
 .logo-wrapper{margin:40px auto 30px;}
 .logo{
     font-size: 46px;
+    margin:10px auto 0px;
     font-weight:500 !important;
     text-transform: uppercase;
 }
@@ -113,19 +116,25 @@ input[type="submit"].button{
     width:501px;
     margin:0px auto 230px;
 }
-a{color:#d23388;border-bottom:dotted 1px #d23388}
+a{color:#d23388;color:#fff;border-bottom:dotted 1px #fff}
+
+strong{font-weight: 500}
+#peoo{
+    height:50px;
+    stroke:#fff;
+}
+#peoo .plsar{
+    fill:transparent;
+    box-shadow: 0px 0px 14px rgba(255,255,255,0.9)
+}
+
+#peoo{height:40px; margin-left:-50px; margin-top:40px;}
+.logo-wrapper{margin-top:30px !important;}
+
+
 @media screen and (max-width: 590px) {
     .inner {
         margin:0px 40px;
         width:calc(100% - 80px);
     }
-}
-strong{font-weight: 500}
-#peoo{
-    height:50px;
-    fill:#111212;
-    stroke:#d23388;
-}
-#peoo .plsar{
-    fill:#111212;
 }

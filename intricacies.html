@@ -9,6 +9,14 @@
     <link href="benefit/icon.png" rel="icon" type="image/png" />
     <link rel="stylesheet" href="benefit/css/default.css">
 
+    <style>
+        #peoo{height:40px; margin-left:-50px; margin-top:40px;}
+        .logo-wrapper{margin-top:30px !important;color: #58ff69}
+        body{
+            background: rgb(0,0,0);
+            background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 85%, rgba(239,7,132,1) 100%);
+        }
+    </style>
 </head>
 <body>
 
@@ -21,8 +29,8 @@
         <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 67" width="54" height="67">
             <defs>
                 <linearGradient id="g1" x1="26.6" y1="59.4" x2="26.6" y2="11.3" gradientUnits="userSpaceOnUse">
-                    <stop offset="0" stop-color="#d23388"/>
-                    <stop offset="1" stop-color="#1d1c22"/>
+                    <stop offset=".3" stop-color="#000"/>
+                    <stop offset="1" stop-color="#d60776"/>
                 </linearGradient>
             </defs>
             <style>
@@ -37,8 +45,14 @@
         data persistence and view data binding. Let's quickly
     go through each.</p>
 
+    <h2>Dependency</h2>
+    <pre>
+        <code>
+implementation("net.plsar:plsar:0.001")</code>
+    </pre>
+
     <h2>The Server</h2>
-    <p>The server is built on the HttpExchange. Is time tested,
+    <p>The server is built on the HttpExchange. It is time tested,
     simple and can handle mid size enterprise requirements.
     To initialize <strong>PLSAR</strong> you need to initialize
         the server.</p>
@@ -50,7 +64,7 @@ import plsar.PLSAR
 fun main(){
     val plsar = PLSAR.Builder()
                 .port(8080)
-                .executors(30)
+                .ambiance(30)
                 .create()
     plsar.start()
 }
@@ -64,12 +78,10 @@ fun main(){
     you defined as dependencies via annotations. They are readily
     available via the <span class="highlight">@Inject</span> declaration.</p>
 
-    <h3>Example</h3>
     <pre>
             <code>
 @Inject
-var cache: PLSAR.Cache? = null
-            </code>
+var cache: PLSAR.Cache? = null</code>
     </pre>
 
 
@@ -132,7 +144,7 @@ import plsar.PLSAR
 fun main(){
     val plsar = PLSAR.Builder()
                 .port(8080)
-                .executors(30)
+                .ambiance(30)
                 .create()
     plsar.registerInterceptor(MockInterceptor())
     plsar.start()
@@ -148,19 +160,24 @@ fun main(){
 
     <pre>
         <code>
+&lt;plsar:namespace var="eos"/&gt;
+
 &lt;eos:each in="${people}" item="person"&gt;
     &lt;span&gt;${person.name}&lt;/span&gt;
 &lt;/eos:each&gt;</code>
     </pre>
 
-    <p> What's better is you don't need a special
-        view extension, you can use what ever extension you please:
-        .htm, etc...</p>
+    <p>You don't need a special
+        view extension, you can use what ever extension you would like:
+        .htm, etc... In addition, you can bind your own
+        namespace. We loved working with the ctaglib from the Java
+        World, so much so we mirrored it as much as we could without
+        copying.</p>
 
     <p><a href="index.html">Home</a></p>
 
 
-    <p>Contact Us <br/><a href="mailto:dev@plsar.net">dev@plsar.net</a></p>
+    <p><a href="mailto:dev@plsar.net">dev@plsar.net</a></p>
 </div>
 
 

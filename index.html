@@ -21,8 +21,8 @@
             <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 67" width="54" height="67">
                 <defs>
                     <linearGradient id="g1" x1="26.6" y1="59.4" x2="26.6" y2="11.3" gradientUnits="userSpaceOnUse">
-                        <stop offset="0" stop-color="#d23388"/>
-                        <stop offset="1" stop-color="#1d1c22"/>
+                        <stop offset=".3" stop-color="#000"/>
+                        <stop offset="1" stop-color="#d60776"/>
                     </linearGradient>
                 </defs>
                 <style>
@@ -31,17 +31,17 @@
                 <path class="plsar" d="m38.6 11.3l11.8 48.1l-47.6-13.8z" />
             </svg>
             <h1 class="logo">PLSAR</h1>
-            <span class="tagline">eco-system</span>
+            <span class="tagline">Kotlin Framework</span>
         </div>
 
-        <p><strong>PLSAR</strong>  Kotlin based web framework has a built in server which
+        <p><strong>PLSAR</strong>  Kotlin based web framework provides
+            a built in server,
             handles dependency injection, http routing, data persistence and
-            view data binding or templating</p>
+            view data binding.</p>
 
         <p>This allows for rapid development saving you time &amp; money.
             <strong>PLSAR</strong> allows you to spend more of your
-            energy on features instead of configuration and
-            framework setup.</p>
+            energy on features instead of configuration. </p>
 
         <h3>Main.kt</h3>
         <pre>
@@ -51,7 +51,7 @@ import plsar.PLSAR
 fun main(){
     val plsar = PLSAR.Builder()
                 .port(8080)
-                .executors(20)
+                .ambiance(20)
                 .create()
     plsar.start()
 }
@@ -60,7 +60,7 @@ fun main(){
 
         <p><a href="intricacies.html"><h3>Getting Started</h3></a></p>
 
-        <p>Contact Us <br/><a href="mailto:dev@plsar.net">dev@plsar.net</a></p>
+        <p><a href="mailto:dev@plsar.net">dev@plsar.net</a></p>
     </div>
 
 
