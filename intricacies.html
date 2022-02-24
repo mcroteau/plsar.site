@@ -4,13 +4,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
+    <link rel="stylesheet"
+          href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/default.min.css">
+    <link rel="stylesheet"
+          href="benefit/css/syntax.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+
     <meta name="keywords" content="kotlin, web framework, kotlin framework"/>
 
     <link href="benefit/icon.png" rel="icon" type="image/png" />
     <link rel="stylesheet" href="benefit/css/default.css">
 
     <style>
-        .plsar-init{stroke:#EA0782;fill:transparent}
         #peoo{height:40px; margin-left:-50px; margin-top:40px;}
         .logo-wrapper{margin-top:30px !important;color: #58ff69}
         body{
@@ -22,7 +27,7 @@
 <body>
 
 <svg id="peoo" version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 67" width="54" height="67">
-    <path class="plsar-init" d="m38.6 11.3l11.8 48.1l-47.6-13.8z" />
+    <path class="plsar" d="m38.6 11.3l11.8 48.1l-47.6-13.8z" />
 </svg>
 
 <div class="inner">
@@ -95,9 +100,8 @@ var cache: PLSAR.Cache? = null</code>
 
     <pre>
             <code>
-
 @HttpRouter
-class TodoRouter {
+class FooRouter {
 
     @Text
     @Get("/")
@@ -106,13 +110,12 @@ class TodoRouter {
     }
 
     @Get("/create")
-    @Design("/layouts/default.ktv")
+    @Design("/layouts/default.ksp")
     fun text(): String {
-        return "/pages/create.ktv"
+        return "/pages/create.ksp"
     }
 
-}
-            </code>
+}</code>
         </pre>
 
     <p>Here we defined two http endpoints. One which serves
@@ -128,31 +131,6 @@ class TodoRouter {
     <p>Annotating the class with
         <span class="highlight">@HttpRouter</span> tells <strong>PLSAR</strong>
         what to search for when a request is made to your system.</p>
-
-
-    <h3>Interceptors</h3>
-    <p>If you have lived in the Java World and have done web based
-    stuff before then you are familiar with Filters. Interceptors act
-    much like filters allowing you to perform some action before a
-    request is complete.</p>
-
-    <p>Let's update our <span class="highlight">Main.kt</span></p>
-
-    <pre>
-        <code>
-import plsar.PLSAR
-
-fun main(){
-    val plsar = PLSAR.Builder()
-                .port(8080)
-                .ambiance(30)
-                .create()
-    plsar.registerInterceptor(MockInterceptor())
-    plsar.start()
-}
-        </code>
-    </pre>
-
 
 
     <h3>View Data-Binding</h3>
@@ -180,7 +158,6 @@ fun main(){
 
     <p><a href="mailto:dev@plsar.net">dev@plsar.net</a></p>
 </div>
-
 
 </body>
 </html>

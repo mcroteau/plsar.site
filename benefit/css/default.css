@@ -20,6 +20,10 @@ html,body{
     padding:0px;
     margin:0px;
     text-align: center;
+}
+body{
+    padding-bottom:200px;
+    margin-bottom:0px !important;
     background: rgb(0,0,0);
     background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 65%, rgba(239,7,132,1) 100%);
 }
@@ -47,7 +51,7 @@ pre{
     margin:0px auto 40px;
     padding:0px 20px;
     text-align: left;
-    background: #121111;
+    background: #0e0e0e;
     overflow: scroll;
     word-wrap: normal;
     white-space: pre !important;
@@ -55,7 +59,9 @@ pre{
     text-align: left;
 }
 code{
-    font-family: 'Fira Code';
+    color:#e80781;
+    padding:0px !important;
+    font-family: 'Fira Code' !important;
     overflow: scroll;
     white-space: pre !important;
     line-break: normal;
@@ -116,7 +122,7 @@ input[type="submit"].button{
     width:501px;
     margin:0px auto 230px;
 }
-a{color:#d23388;color:#36ffff;border-bottom:dotted 1px #36ffff}
+a{color:#d23388;color:#E80781;border-bottom:dotted 1px #E80781}
 
 strong{font-weight: 500}
 #peoo{
