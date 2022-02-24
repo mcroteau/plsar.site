@@ -14,6 +14,7 @@
 
     <link href="benefit/icon.png" rel="icon" type="image/png" />
     <link rel="stylesheet" href="benefit/css/default.css">
+    <script src="benefit/bsshh.js"></script>
 
     <style>
         #peoo{height:40px; margin-left:-50px; margin-top:40px;}
@@ -21,6 +22,8 @@
     </style>
 </head>
 <body>
+
+<div class="peoo square"></div>
 
 <svg id="peoo" version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 67" width="54" height="67">
     <path class="plsar" d="m38.6 11.3l11.8 48.1l-47.6-13.8z" />
@@ -154,7 +157,15 @@ class FooRouter {
 
     <p><a href="mailto:dev@plsar.net">dev@plsar.net</a></p>
 </div>
-
+<script>
+    let elements = document.getElementsByClassName('peoo')
+    for(z = 0; z < elements.length; z++){
+        let element = elements[z]
+        var x = new RandomObjectMover(element, window);
+        x.setSpeed(parseInt(140));
+        x.start();
+    }
+</script>
 </body>
 </html>
 

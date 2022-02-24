@@ -138,6 +138,20 @@ strong{font-weight: 500}
 .logo-wrapper{margin-top:30px !important;}
 
 
+.peoo{
+    height:20px;
+    width:20px;
+    background-color: transparent
+}
+.square{border:solid 1px #36ffff;}
+.triangle{height:30px; width:30px;}
+.triangle .plsar{fill:transparent !important; stroke: #36ffff}
+.center, .center p, .center h3{text-align: center}
+
+#peoo{height:40px; margin-left:-50px; margin-top:40px;}
+.logo-wrapper{margin-top:30px !important;color: #58ff69}
+
+
 @media screen and (max-width: 590px) {
     .inner {
         margin:0px 40px;
