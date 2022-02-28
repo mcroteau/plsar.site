@@ -179,11 +179,20 @@ plsar.env=basic</code>
         that <strong>PLSAR</strong> supports</strong></p>
 
     <ul>
+        <li><strong>@HttpRouter</strong> : <span class="highlight">class level</span>
+            Denotes http request router.</li>
         <li><strong>@Repo</strong> : <span class="highlight">class level</span>
-        Meant to denote database access. Couple with
-            <strong>PLSAR.Repo</strong> to perform queries, persist, update, delete</li>
+        Denotes database access object. Couple with
+            <span class="highlight">PLSAR.Repo</span> to perform queries, persist data, update data, delete data</li>
+        <li><strong>@Config</strong> : <span class="highlight">class level</span>
+            Denotes http request router.</li>
+        <li><strong>@Dependency</strong> : <span class="highlight">method level</span>
+            Expects the method to return the instance of the object desired.</li>
     </ul>
 
+
+    <h2>Example Project</h2>
+    <p><strong>plsar/src/main/kotlin/example</strong></p>
 
     <p><a href="index.html">Home</a></p>
 

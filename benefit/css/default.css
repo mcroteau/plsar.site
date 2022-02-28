@@ -151,6 +151,9 @@ strong{font-weight: 500}
 #peoo{height:40px; margin-left:-50px; margin-top:40px;}
 .logo-wrapper{margin-top:30px !important;color: #58ff69}
 
+ul{text-align: left}
+ul li{font-size:19px;padding:10px 0px;}
+
 
 @media screen and (max-width: 590px) {
     .inner {
