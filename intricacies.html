@@ -179,15 +179,20 @@ plsar.env=basic</code>
         that <strong>PLSAR</strong> supports</strong></p>
 
     <ul>
+        <li><strong>@Inject</strong> : <span class="highlight">field level</span>
+            Will bind the instance of the object in the container if present.</li>
         <li><strong>@HttpRouter</strong> : <span class="highlight">class level</span>
             Denotes http request router.</li>
         <li><strong>@Repo</strong> : <span class="highlight">class level</span>
-        Denotes database access object. Couple with
+        Denotes database access object. Will be stored within the IOC container. Couple with
             <span class="highlight">PLSAR.Repo</span> to perform queries, persist data, update data, delete data</li>
+        <li><strong>@Element</strong> : <span class="highlight">class level</span>
+            Denotes a basic element to be stored within the dependency injection container.</li>
         <li><strong>@Config</strong> : <span class="highlight">class level</span>
             Denotes http request router.</li>
         <li><strong>@Dependency</strong> : <span class="highlight">method level</span>
-            Expects the method to return the instance of the object desired.</li>
+            Expects the method to return the instance of the object desired, will store it
+        within the IOC container</li>
     </ul>
 
     <h2>Example Project</h2>
