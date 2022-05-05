@@ -43,34 +43,171 @@
             <span class="tagline">Kotlin Framework</span>
         </div>
 
-        <p><strong>PLSAR</strong>  Kotlin based web framework provides
-            a built in server,
-            handles dependency injection, http routing, data persistence and
-            view data binding.</p>
+        <p><strong>PLSAR</strong> ships with everything you need to build a
+            web system including dependency injection, http routing,
+            data persistence and view data binding. Let's quickly
+            go through each.</p>
 
-        <p>This allows for rapid development saving you time.
+        <p>This allows for rapid development.
             <strong>PLSAR</strong> allows you to spend more of your
             energy on features instead of configuration. </p>
-
-        <h3>Main.kt</h3>
+        
+        <h2>Project Structure</h2>
         <pre>
-            <code class="language-kotlin ">
+        <code>
+src
+  |_main
+      |_ kotlin/
+webapp
+  |_ pages/
+
+build.gradle</code>
+    </pre>
+
+        <h2>Dependency</h2>
+        <pre>
+        <code>
+implementation("net.plsar:plsar:0.002")</code>
+    </pre>
+
+        <h2>The Server</h2>
+        <p>The server is built on the HttpExchange. It is time tested,
+            simple and can handle mid size enterprise requirements.
+            To initialize <strong>PLSAR</strong> you need to initialize
+            the server.</p>
+
+        <pre>
+            <code>
 import plsar.PLSAR
 
 fun main(){
     val plsar = PLSAR.Builder()
                 .port(8080)
-                .ambiance(20)
+                .ambiance(30)
                 .create()
     plsar.start()
 }
             </code>
         </pre>
 
-        <div class="center">
-            <p><a href="intricacies.html"><h3>Getting Started</h3></a></p>
-            <p><a href="mailto:dev@plsar.net">dev@plsar.net</a></p>
-        </div>
+
+        <h2>Dependency Injection</h2>
+        <p>When <span class="highlight">.start()</span> gets called, a
+            dependency injection container gets built with all the classes
+            you defined as dependencies via annotations. They are readily
+            available via the <span class="highlight">@Inject</span> declaration.</p>
+
+        <pre>
+            <code>
+@Inject
+var cache: PLSAR.Cache? = null</code>
+    </pre>
+
+
+        <h2>Http Routing</h2>
+        <p>Http routing is routing of http requests to
+            functions defined within a class. This is where
+            <span class="highlight">@HttpRouter</span> comes into play.
+            It serves as a binding class, binding method calls to request
+            paths.</p>
+
+        <pre>
+            <code>
+@HttpRouter
+class FooRouter {
+
+    @Text
+    @Get("/")
+    fun text(): String {
+        return "hello world"
+    }
+
+    @Get("/create")
+    @Design("/layouts/default.ksp")
+    fun text(): String {
+        return "/pages/create.ksp"
+    }
+
+}</code>
+        </pre>
+
+        <p>Here we defined two http endpoints. One which serves
+            up plain text, the other serves up a view.
+            HttpRouter methods can return plain text,
+            json, or data bound views which we will go into.
+        </p>
+
+        <p>Notice the <span class="highlight">@Design</span>
+            annotation. The design specified wraps your view with the
+            given layout.</p>
+
+        <p>Annotating the class with
+            <span class="highlight">@HttpRouter</span> tells <strong>PLSAR</strong>
+            what to search for when a request is made to your system.</p>
+
+
+        <h3>View Data-Binding</h3>
+        <p>Much like the .JSP tag library, <strong>PLSAR</strong> boasts it's own
+            view tag library.</p>
+
+        <pre>
+        <code>
+&lt;plsar:namespace var="eos"/&gt;
+
+&lt;eos:each in="${people}" item="person"&gt;
+    &lt;span&gt;${person.name}&lt;/span&gt;
+&lt;/eos:each&gt;</code>
+    </pre>
+
+        <p>You don't need a special
+            view extension, you can use what ever extension you would like:
+            .htm, etc... In addition, you can bind your own
+            namespace. We loved working with the ctaglib from the Java
+            World, so much so we mirrored it as much as we could without
+            copying.</p>
+
+        <h2>Config File</h2>
+        <p>You need a config file with the following property
+            to get started located @ </p>
+        <p><strong>src/main/resources/plsar.props</strong>
+        <pre>
+            <code>
+plsar.env=basic</code>
+        </pre>
+        </p>
+
+        <h3>@ Annotations</h3>
+        <p>Here is the list of annotations
+            that <strong>PLSAR</strong> supports</strong></p>
+
+        <ul>
+            <li><strong>@Inject</strong> : <span class="highlight">field level</span>
+                Will bind the instance of the object in the container if present.</li>
+            <li><strong>@HttpRouter</strong> : <span class="highlight">class level</span>
+                Denotes http request router.</li>
+            <li><strong>@Repo</strong> : <span class="highlight">class level</span>
+                Denotes database access object. Will be stored within the IOC container. Couple with
+                <span class="highlight">PLSAR.Repo</span> to perform queries, persist data, update data, delete data</li>
+            <li><strong>@Element</strong> : <span class="highlight">class level</span>
+                Denotes a basic element to be stored within the dependency injection container.</li>
+            <li><strong>@Config</strong> : <span class="highlight">class level</span>
+                Denotes http request router.</li>
+            <li><strong>@Dependency</strong> : <span class="highlight">method level</span>
+                Expects the method to return the instance of the object desired, will store it
+                within the IOC container</li>
+        </ul>
+
+        <h2>Example Project</h2>
+        <p>An example project can be found in the <strong>PLSAR</strong> source @
+            <a href="https://github.com/mcroteau/plsar/tree/master/src/main/kotlin/example" target="_blank">
+                https://github.com/mcroteau/plsar/src/main/kotlin/example</a></p>
+
+        <h2>The Source</h2>
+        <p><a href="https://github.com/mcroteau/plsar" target="_blank">https://github.com/mcroteau/plsar</a></p>
+
+        <p><a href="index.html">Home</a></p>
+
+        <p><a href="mailto:dev@plsar.net">dev@plsar.net</a></p>
 
     </div>
 
