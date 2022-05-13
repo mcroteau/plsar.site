@@ -40,11 +40,11 @@
                 <path class="plsar" d="m38.6 11.3l11.8 48.1l-47.6-13.8z" />
             </svg>
             <h1 class="logo">PLSAR</h1>
-            <span class="tagline">Kotlin Framework</span>
+            <span class="tagline">Kotlin Web Framework</span>
         </div>
 
-        <p><strong>PLSAR</strong> is a modern web framework on Kotlin built for
-        rapid development.</p>
+        <p><strong>PLSAR</strong> is a modern Kotlin Web framework built for
+        enterprise rapid development.</p>
 
         <p><strong>PLSAR</strong> ships with everything you need to build a
             web system including dependency injection, http routing,
@@ -70,8 +70,7 @@ implementation("net.plsar:plsar:0.002")</code>
     </pre>
 
         <h2>The Server</h2>
-        <p>The server is built on the HttpExchange. It is time tested,
-            simple and can handle enterprise requirements.
+        <p>The server is simple and can handle enterprise requirements.
             To initialize <strong>PLSAR</strong> you need to initialize
             the server.</p>
 
@@ -85,10 +84,27 @@ fun main(){
                 .ambiance(30)
                 .create()
     plsar.start()
-}
-            </code>
+}</code>
         </pre>
 
+        <h2>Configuration</h2>
+        <p>PLSAR projects require a <span class="highlight">plsar.props</span> file to be located at :
+        <span class="highlight">src/main/resources/</span>. Here is an example.</p>
+        <pre>
+            <code>
+plsar.env=create,drop or update
+plsar.assets=assets
+plsar.properties=this</code>
+        </pre>
+
+        <p><strong><span class="highlight">plsar.env</span></strong> instructs PLSAR to either create an in memory database or not, or
+        to update the existing H2 database. </p>
+
+        <p><strong><span class="highlight">plsar.assets</span></strong> comma seperated field where static asset folders defined.</p>
+
+        <p><strong><span class="highlight">plsar.properties</span></strong> is a comma seperated setting where all property files can be
+        listed for your project. PLSAR will challenge these, and make your properties available within
+        a class via the <code>@Property</code> annotation.</p>
 
         <h2>Dependency Injection</h2>
         <p>When <span class="highlight">.start()</span> gets called, a
@@ -151,11 +167,11 @@ class FooRouter {
 
         <pre>
         <code>
-&lt;plsar:namespace var="eos"/&gt;
+&lt;plsar:namespace var="plsar"/&gt;
 
-&lt;eos:each in="${people}" item="person"&gt;
+&lt;plsar:each in="${people}" item="person"&gt;
     &lt;span&gt;${person.name}&lt;/span&gt;
-&lt;/eos:each&gt;</code>
+&lt;/plsar:each&gt;</code>
     </pre>
 
         <p>You don't need a special
@@ -197,9 +213,14 @@ plsar.env=basic</code>
         </ul>
 
         <h2>Example Project</h2>
-        <p>An example project can be found in the <strong>PLSAR</strong> source @
-            <a href="https://github.com/mcroteau/plsar/tree/master/src/main/kotlin/example" target="_blank">
-                https://github.com/mcroteau/plsar/src/main/kotlin/example</a></p>
+        <p>In early iterations, an example project can be found within the PLSAR source.
+         Run:</p>
+
+        <pre>
+<code>gradle run</code>
+        </pre>
+
+        <p>from the project root.</p>
 
         <h2>The Source</h2>
         <p><a href="https://github.com/mcroteau/plsar" target="_blank">https://github.com/mcroteau/plsar</a></p>
