@@ -177,7 +177,7 @@ public class UserRepo {
 
     <p>Our repo class is aptly annotated with <code>@Repository</code>,
         this tells PLSA.R to add the class to the list of future available dependencies.
-        If defining a repo you must declare a single parameter constructor which inherits a
+        If defining a repo you must declare a single parameter constructor which takes a
         <code>net.plsar.Dao</code> object. You must also define a <code>Dao</code> field setting the Dao
         field to the constructor <code>Dao</code>. Binding via dependency injection is a little more flimsy,
         this makes the application.</p>
