@@ -44,7 +44,39 @@
 
     <h1>SECURE<br/>SYSTEM.S</h1>
 
-    <p></p>
+
+    <p>Systems often times require authentication and authorization in order to
+        keep the system safe and secure. PLSA.R is packaged with
+        a security layer built in. </p>
+
+    <p>Configuring PLSA.R for authentication and authorization.</p>
+
+    <pre><code>public class Main {
+
+    public static void main(String[] args){
+
+        PLSA.R plsar = new PLSA.R(9001);
+
+        ViewConfig viewConfig = new ViewConfig();
+        viewConfig.setViewsPath("");//defaults to webapp located in src/main/
+        viewConfig.setResourcesPath("resources");
+        viewConfig.setViewExtension(".jsp");
+        plsar.setViewConfig(viewConfig);
+
+        plsar.addViewRenderer(AuthenticatedRenderer.class);
+        plsar.addViewRenderer(GuestRenderer.class);
+        plsar.addViewRenderer(UserRenderer.class);
+
+        plsar.setSecurityAccess(AuthSecurityAccess.class);
+
+        // performance & persistence configurations
+
+        plsar.start();
+    }
+}</code></pre>
+
+
+
 
     <p class="pls">&copy;2023 Mike Croteau</p>
 

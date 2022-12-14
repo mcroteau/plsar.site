@@ -71,12 +71,6 @@ public class Main {
         schemaConfig.setSchema("schema.sql");
         schemaConfig.setEnvironment(Environments.DEVELOPMENT);
 
-        ViewConfig viewConfig = new ViewConfig();
-        viewConfig.setViewsPath("");//defaults to webapp located in src/main/
-        viewConfig.setResourcesPath("resources");
-        viewConfig.setViewExtension(".jsp");
-        plsar.setViewConfig(viewConfig);
-
         plsar.setPersistenceConfig(persistenceConfig);
         plsar.setSchemaConfig(schemaConfig);
         plsar.setPageRenderingScheme(RenderingScheme.RELOAD_EACH_REQUEST);
