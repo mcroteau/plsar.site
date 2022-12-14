@@ -55,7 +55,7 @@
 
     public static void main(String[] args){
 
-        PLSA.R plsar = new PLSA.R(9001);
+        PLSAR plsar = new PLSAR(9001);
 
         ViewConfig viewConfig = new ViewConfig();
         viewConfig.setViewsPath("");//defaults to webapp located in src/main/
@@ -76,7 +76,122 @@
 }</code></pre>
 
 
+    <p>There are two important sections to pay attention to.
+        The one below tells PLSA.R what class to use in order to check if authenticated,
+        if user has permission, role and to retrieve the logged in user id.</p>
 
+    <pre><code>plsar.setSecurityAccess(AuthSecurityAccess.class);</code></pre>
+
+    <h3>AuthSecurityAccess.java</h3>
+
+    <pre><code>package io.foo;
+
+import net.plsar.Dao;
+import net.plsar.security.SecurityAccess;
+import io.foo.model.Permission;
+import io.foo.model.User;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class AuthSecurityAccess implements SecurityAccess {
+
+    Dao dao;
+
+    @Override
+    public void setDao(Dao dao) {
+        this.dao = dao;
+    }
+
+    @Override
+    public String getPassword(String credential){
+        User user = getUser(credential);
+        return user.getPassword();
+    }
+
+    @Override
+    public Set&lt;String&gt; getRoles(String credential){
+        User user = getUser(credential);
+        String sql = "select permission from user_roles where user_id = [+]";
+        List&lt;UserRole&gt; rolesList = (ArrayList) dao.getList(sql, new Object[]{ user.getId() }, UserRole.class);
+        Set&lt;String&gt; roles = new HashSet<>();
+        for(UserRole role: rolesList){
+            roles.add(role.getName());
+        }
+        return roles;
+    }
+
+    @Override
+    public Set&lt;String&gt; getPermissions(String credential){
+        User user = getUser(credential);
+        String sql = "select permission from user_permissions where user_id = [+]";
+        List&lt;Permission&gt; permissionsList = (ArrayList) dao.getList(sql, new Object[]{ user.getId() }, Permission.class);
+        Set&lt;String&gt; permissions = new HashSet<>();
+        for(Permission permission: permissionsList){
+            permissions.add(permission.getPermission());
+        }
+        return permissions;
+    }
+
+    public User getUser(String credential){
+        String phonesql = "select * from users where phone = '[+]'";
+        User user = (User) dao.get(phonesql, new Object[] { credential }, User.class);
+        if(user == null){
+            String emailsql = "select * from users where email = '[+]'";
+            user = (User) dao.get(emailsql, new Object[] { credential }, User.class);
+        }
+        return user;
+    }
+
+}</code></pre>
+
+
+    <p>What you see above is a contract implementation or an interface implementation that is required
+    by PLSA.R in order to leverage the authentication and authorization piece.</p>
+
+    <p>There will be times when you need to check if the user has a specific role or permission see below:</p>
+
+    <pre><code>if(!securityManager.hasRole("SUPER_USER", req)){
+    cache.set("message", "permission required.");
+    return "redirect:/users/identity/" + id;
+}</code></pre>
+
+    <pre><code>if(!securityManager.hasPermission(permission, req)){
+    cache.set("message", "permission required.");
+    return "redirect:/users/identity/" + id;
+}</code></pre>
+
+    <p>The final piece, view renderers. ViewRenderers are view snippets that allow the
+        developer to either render some html on render or determine via a boolean check
+        whether to display html code. Below are 3 security view renderers that ship with
+        PLSA.R.</p>
+
+    <pre><code>plsar.addViewRenderer(AuthenticatedRenderer.class);
+plsar.addViewRenderer(GuestRenderer.class);
+plsar.addViewRenderer(UserRenderer.class);</code></pre>
+
+    <p><code>AuthenticatedRenderer.class</code> allows for this code aspect to
+        be inserted into your view.</p>
+
+    <pre><code>&lt;plsar:authenticated&gt;
+//-> html
+&lt;/plsar:authenticated&gt;</code></pre>
+
+    <p><code>GuestRenderer.class</code> checks to see if the current user is a guest, if so,
+        renders the code snippet between. Corresponding view code snippet.</p>
+
+    <pre><code>&lt;plsar:guest&gt;
+//-> html
+&lt;/plsar:guest&gt;</code></pre>
+
+    <p><code>UserRenderer.class</code> renders the current username.
+        Corresponding view code snippet.</p>
+
+    <pre><code>&lt;plsar:user&gt;
+//-> html
+&lt;/plsar:user&gt;</code></pre>
 
     <p class="pls">&copy;2023 Mike Croteau</p>
 
