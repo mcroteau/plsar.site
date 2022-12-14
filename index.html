@@ -10,224 +10,141 @@
           href="benefit/css/syntax.css">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
 
-    <meta name="keywords" content="kotlin, web framework, kotlin framework"/>
+    <meta name="keywords" content="java, java server, server, java web system, web framework, inversion of control, dependency injection"/>
 
     <link href="benefit/icon.png" rel="icon" type="image/png" />
     <link rel="stylesheet" href="benefit/css/default.css">
     <script src="benefit/bsshh.js"></script>
+
+
 
 </head>
 <body>
 
     <div class="peoo square"></div>
 
-    <svg id="peoo" version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 67" width="54" height="67">
-        <path class="plsar" d="m38.6 11.3l11.8 48.1l-47.6-13.8z" />
-    </svg>
+    <div class="logo-wrapper">
 
-    <div class="inner">
-        <div class="logo-wrapper">
-            <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 67" width="54" height="67">
-                <defs>
-                    <linearGradient id="g1" x1="26.6" y1="59.4" x2="26.6" y2="11.3" gradientUnits="userSpaceOnUse">
-                        <stop offset=".3" stop-color="#F8873C"/>
-                        <stop offset="1" stop-color="#F8873C"/>
-                    </linearGradient>
-                </defs>
-                <style>
-                    .plsar { fill: url(#g1) }
-                </style>
-                <path class="plsar" d="m38.6 11.3l11.8 48.1l-47.6-13.8z" />
-            </svg>
-            <h1 class="logo">PLSAR</h1>
-            <span class="tagline">Eco-System</span>
-        </div>
+        <svg class="identity" version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 99" width="90" height="99">
+            <style>
+                .s0 { fill: transparent;stroke: #00faff;stroke-linejoin: round; }
+            </style>
+            <path class="s0" d="m79.4 93.4l-44-21.9 41-27.2z"/>
+            <path class="s0" d="m29.4 33.4l-27.4-13.7 25.5-16.9z"/>
+        </svg>
 
-        <p><strong>PLSAR</strong> is a modern Web Server & Framework built for
-        enterprise requirements.</p>
+        <h1 class="logo">PLSA.R</h1>
+    </div>
 
-        <p><strong>PLSAR</strong> ships with everything you need to build a
-            web system including dependency injection, http routing,
-            data persistence and view data binding. Let's quickly
-            go through each.</p>
+    <div class="content">
 
-        <h2>Project Structure</h2>
-        <pre>
-        <code>
-src
-  |_main
-      |_ kotlin/
-web-ux
-  |_ pages/
-
-build.gradle</code>
-    </pre>
-
-        <h2>Dependency</h2>
-        <pre>
-        <code>
-implementation("net.plsar:plsar-framework:1.01")</code>
-    </pre>
-
-        <h2>The Server</h2>
-        <p>The server is simple and can handle enterprise requirements.
-            To initialize <strong>PLSAR</strong> you need to initialize
-            the server.</p>
-
-        <pre>
-            <code>
-import plsar.PLSAR
-
-fun main(){
-    val plsar = PLSAR.Builder()
-                .port(8080)
-                .ambiance(30)
-                .create()
-    plsar.start()
-}</code>
-        </pre>
-
-        <h2>Configuration</h2>
-        <p>PLSAR projects require a <span class="highlight">plsar.props</span> file to be located at :
-        <span class="highlight">src/main/resources/</span>. Here is an example.</p>
-        <pre>
-            <code>
-plsar.env=create,drop or update
-plsar.assets=assets
-plsar.properties=this</code>
-        </pre>
-
-        <p><strong><span class="highlight">plsar.env</span></strong> instructs PLSAR to either create an in memory database or not, or
-        to update the existing H2 database. </p>
-
-        <p><strong><span class="highlight">plsar.assets</span></strong> comma seperated field where static asset folders defined.</p>
-
-        <p><strong><span class="highlight">plsar.properties</span></strong> is a comma seperated setting where all property files can be
-        listed for your project. PLSAR will challenge these, and make your properties available within
-        a class via the <code>@Property</code> annotation.</p>
-
-        <h2>Dependency Injection</h2>
-        <p>When <span class="highlight">.start()</span> gets called, a
-            dependency injection container gets built with all the classes
-            you defined as dependencies via annotations. They are readily
-            available via the <span class="highlight">@Inject</span> declaration.</p>
-
-        <pre>
-            <code>
-@Inject
-var cache: PLSAR.Cache? = null</code>
-    </pre>
-
-
-        <h2>Http Routing</h2>
-        <p>Http routing is routing of http requests to
-            functions defined within a class. This is where
-            <span class="highlight">@HttpRouter</span> comes into play.
-            It serves as a binding class, binding method calls to request
-            paths.</p>
-
-        <pre>
-            <code>
-@HttpRouter
-class FooRouter {
-
-    @Plain
-    @Get("/")
-    fun text(): String {
-        return "hello world"
-    }
-
-    @Get("/create")
-    @Design("/layouts/default.ksp")
-    fun text(): String {
-        return "/pages/create.ksp"
-    }
-
-}</code>
-        </pre>
-
-        <p>Here we defined two http endpoints. One which serves
-            up plain text, the other serves up a view.
-            HttpRouter methods can return plain text,
-            json, or data bound views which we will go into.
-        </p>
-
-        <p>Notice the <span class="highlight">@Design</span>
-            annotation. The design specified wraps your view with the
-            given layout.</p>
-
-        <p>Annotating the class with
-            <span class="highlight">@HttpRouter</span> tells <strong>PLSAR</strong>
-            what to search for when a request is made to your system.</p>
-
-
-        <h3>View Data-Binding</h3>
-        <p>Much like the .JSP tag library, <strong>PLSAR</strong> boasts it's own
-            view tag library.</p>
-
-        <pre>
-        <code>
-&lt;plsar:namespace var="plsar"/&gt;
-
-&lt;plsar:each in="${people}" item="person"&gt;
-    &lt;span&gt;${person.name}&lt;/span&gt;
-&lt;/plsar:each&gt;</code>
-    </pre>
-
-        <p>You don't need a special
-            view extension, you can use what ever extension you would like:
-            .htm, etc... In addition, you can bind your own
-            namespace. We loved working with the ctaglib from the Java
-            World, so much so we mirrored it as much as we could without
-            copying.</p>
-
-        <h2>Config File</h2>
-        <p>You need a config file with the following property
-            to get started located @ </p>
-        <p><strong>src/main/resources/plsar.props</strong>
-        <pre>
-            <code>
-plsar.env=basic</code>
-        </pre>
-        </p>
-
-        <h3>@ Annotations</h3>
-        <p>Here is the list of annotations
-            that <strong>PLSAR</strong> supports</strong></p>
-
-        <ul>
-            <li><strong>@Inject</strong> : <span class="highlight">field level</span>
-                Will bind the instance of the object in the container if present.</li>
-            <li><strong>@HttpRouter</strong> : <span class="highlight">class level</span>
-                Denotes http request router.</li>
-            <li><strong>@Repo</strong> : <span class="highlight">class level</span>
-                Denotes database access object. Will be stored within the IOC container. Couple with
-                <span class="highlight">PLSAR.Repo</span> to perform queries, persist data, update data, delete data</li>
-            <li><strong>@Element</strong> : <span class="highlight">class level</span>
-                Denotes a basic element to be stored within the dependency injection container.</li>
-            <li><strong>@Config</strong> : <span class="highlight">class level</span>
-                Denotes http request router.</li>
-            <li><strong>@Dependency</strong> : <span class="highlight">method level</span>
-                Expects the method to return the instance of the object desired, will store it
-                within the IOC container</li>
+        <ul class="navigation">
+            <li><a href="security.html">secure_systems</a></li>
+            <li><a href="persistence.html">persistent_systems</a></li>
+            <li><a href="index.html" class="active">index</a></li>
         </ul>
+        <br class="clear"/>
 
-        <h2>Example Project</h2>
-        <p>In early iterations, an example project can be found within the PLSAR source.
-         Run:</p>
+        <h1>PLSA.R</h1>
 
+        <p>PLSAR is an Open Source Server + Framework Environment for high demand requirements.
+            There are no static references, no file reads, access to static fields per request.
+            Everything is either cached and or instantiated on the fly. PLSAR runs via one command so
+            there are no .war files to deploy, no additional plugins to install it is a simple yet
+            sophisticated alternative to container deployment environments.</p>
+
+        <p>We even perform a lightweight dependency injection routine so
+            you are not stuck boiler-plating.</p>
+
+        <p>We don't have official stats but it is estimated that PLSAR can handle 190,0000 concurrent
+            connections per second.</p>
+
+        <p>We followed Spring so everything should be familiar.</p>
+
+        <h2>Getting Started</h2>
+
+        <p>Creating a simple REST endpoint is easy in non-persistent mode with no security.
+            We can simplify the run & build process by installing the Gradle wrapper.
+            This assumes you have Gradle installed.</p>
+
+        <p>We first need our build.gradle config file.</p>
+
+        <h3>Dependency</h3>
         <pre>
-<code>gradle run</code>
-        </pre>
+<code>implementation "net.plsar:plsar:1.05"</code></pre>
 
-        <p>from the project root.</p>
+        <h3>Main.java</h3>
 
-        <h2>The Source</h2>
-        <p><a href="https://github.com/mcroteau/plsar" target="_blank">https://github.com/mcroteau/plsar</a></p>
+        <pre><code>public class Main {
+    public static void main(String[] args){
+        PLSA.R plsar = new PLSA.R(9001);
+        plsar.start();
+    }
+}</code></pre>
 
-        <p><a href="mailto:dev@plsar.net">dev@plsar.net</a></p>
+        <h3>HelloController.java</h3>
+
+        <pre><code>import net.plsar.annotations.Controller;
+import net.plsar.annotations.http.Get;
+import net.plsar.annotations.Text;
+
+@Controller
+public class HelloController {
+
+    @Text
+    @Get("/")
+    public String index(){
+        return "hi";
+    }
+
+}</code></pre>
+
+        <p>PLSA.R runs via one command:</p>
+
+        <pre><code>gradle run</code></pre>
+
+        <p>Browse:</p>
+
+        <pre><code>localhost:9001</code></pre>
+
+<!--you have $-->
+
+        <p class="pls">&copy;2023 Mike Croteau</p>
+
+        <div class="break"></div>
 
     </div>
+
+
+
+    <br class="clear"/>
+
+    <style>
+        body{background: #171719}
+        html,body,
+        div, span, p, strong, blockquote, a,
+        h1, h2, h3, h4{
+            font-family: Roboto;
+            color:#fff;
+        }
+        .square{border:solid 1px #00faff}
+        .navigation{margin-bottom:100px}
+        .navigation li{float:right;list-style: none; margin-left:20px;}
+        .navigation li a{color:#fff;text-decoration:none !important; border:none;}
+        .navigation li a.active{color:#00faff;border-bottom:dotted 1px #00faff}
+        .logo-wrapper{width:25%;text-align: right;height:100vh;margin-top:125px;}
+        .identity{margin-top:100px;}
+        .logo{color:#fff;margin-top:40px;text-align: right;}
+        .identity{height:50px; width:50px;}
+        .content{float:left;height:100vh;width:40%;margin-left:70px;padding-bottom:300px;}
+        h1{font-size:109px;text-align: left;margin:0px 0px 20px;}
+        h2{font-size:69px;}
+        p{font-size:19px;}
+        .pls{color:#00faff}
+        .clear{clear:both}
+        .break{padding-top:300px;}
+    </style>
+
 
 
 <script>
