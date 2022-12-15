@@ -46,6 +46,7 @@ p{
 }
 
 pre{
+    color:#00faff;
     font-size:14px;
     margin:0px auto 40px;
     padding:5px 20px 5px 7px;
@@ -56,6 +57,7 @@ pre{
     white-space: pre !important;
     line-break: normal;
     text-align: left;
+    font-family: 'Fira Code' !important;
 }
 code{
     padding:0px !important;
