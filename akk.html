@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>PLSA.R : View Aspect Library</title>
+    <title>PLSA.R : Open Source Java Server + Framework</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -36,42 +36,34 @@
 <div class="content">
 
     <ul class="navigation">
-        <li><a href="asp.html" class="active">aspects</a></li>
+        <li><a href="asp.html">aspects</a></li>
         <li><a href="sys.html">secure_systems</a></li>
         <li><a href="repo.html">persistent_systems</a></li>
-        <li><a href="akk.html">architecture</a></li>
+        <li><a href="akk.html" class="active">architecture</a></li>
         <li><a href="index.html">index</a></li>
     </ul>
     <br class="clear"/>
 
-    <h1>ASPECT.S</h1>
+    <h1>Architecture</h1>
 
-    <p>PLSA.R comes with a suite of aspects otherwise known as a tag library.
+    <img src="benefit/architecture.png" style="width: 100%"/>
 
-    <h3>Conditional Aspects</h3>
-    <p>With a conditional aspect allows you to check if a condition exists, then
-    either renders enclosed html snippet or doesn't render anything at all.</p>
+    <h2>PartitionExecutors</h2>
 
-    <pre><code>&lt;plsar:if spec="${condition}"&gt;
-    code.
-&lt;/plsar:if&gt;</code></pre>
+    <p>As a developer, you can define one or many. Each on is a foundational element. Each
+        PartitionExecutor is a separate thread. Each can hold one or many NetworkRequestExecutors.</p>
 
-    <h3>Iterable Aspect</h3>
-    <p>Iterable aspects allow you to iterate over cached data stored in the
-        <code>net.plsar.model.Cache</code> object. Two level nesting allowed.</p>
+    <h2>NetworkRequestExecutor</h2>
 
-    <pre><code>&lt;plsar:foreach items="${people}" var="person"&gt;
-    ${person.name}
-&lt;/plsar:if&gt;</code></pre>
+    <p>NetworkRequestExecutors wait to receive incoming requests. Each one holds a copy of a
+        RouteSessionGuid Map and a RouteNegotiators Map. A request comes in, the session key is
+        used to grab the route guid, then the corresponding RouteNegotiator which performs
+        the actual request.</p>
 
-    <h3>Variable Aspects</h3>
-    <p>Variable aspects allow the developer to set variable values
-    to be used later. Example:</p>
+    <h2>3:7</h2>
 
-    <pre><code>&lt;plsar:set var="name" val="Joaquin Phoenix"/&gt;
- ...
- ${name}</code></pre>
-
+    <p>We found a configuration of 3/7 PartitionExecutors to NetworkRequestExecutor to be optimal.
+        300/700 the system can handle 40,000 concurrent requests.</p>
 
     <p class="pls">&copy;2023 Mike Croteau</p>
 
@@ -79,10 +71,7 @@
 
 </div>
 
-
-
-
-
+<br class="clear"/>
 
 <script>
     let elements = document.getElementsByClassName('peoo')
@@ -94,6 +83,7 @@
     }
 </script>
 
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9G7SYVHH7"></script>
 <script>
@@ -103,6 +93,6 @@
 
     gtag('config', 'G-D9G7SYVHH7');
 </script>
+
 </body>
 </html>
-

@@ -39,6 +39,7 @@
             <li><a href="asp.html">aspects</a></li>
             <li><a href="sys.html">secure_systems</a></li>
             <li><a href="repo.html">persistent_systems</a></li>
+            <li><a href="akk.html">architecture</a></li>
             <li><a href="index.html" class="active">index</a></li>
         </ul>
         <br class="clear"/>
@@ -59,28 +60,6 @@
             connections per second.</p>
 
         <p>We followed Spring so everything should be familiar.</p>
-
-
-        <h1>Architecture</h1>
-
-        <img src="benefit/architecture.png" style="width: 100%"/>
-
-        <h2>PartitionExecutors</h2>
-
-        <p>As a developer, you can define one or many. Each on is a foundational element. Each
-        PartitionExecutor is a separate thread. Each can hold one or many NetworkRequestExecutors.</p>
-
-        <h2>NetworkRequestExecutor</h2>
-
-        <p>NetworkRequestExecutors wait to receive incoming requests. Each one holds a copy of a
-        RouteSessionGuid Map and a RouteNegotiators Map. A request comes in, the session key is
-            used to grab the route guid, then the corresponding RouteNegotiator which performs
-            the actual request.</p>
-
-        <h2>3:7</h2>
-
-        <p>We found a configuration of 3/7 PartitionExecutors to NetworkRequestExecutor to be optimal.
-        300/700 the system can handle 40,000 concurrent requests.</p>
 
         <h2>Getting Started</h2>
 
