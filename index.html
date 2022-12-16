@@ -71,6 +71,7 @@
         PartitionExecutor is a separate thread. Each can hold one or many NetworkRequestExecutors.</p>
 
         <h2>NetworkRequestExecutor</h2>
+
         <p>NetworkRequestExecutors wait to receive incoming requests. Each one holds a copy of a
         RouteSessionGuid Map and a RouteNegotiators Map. A request comes in, the session key is
             used to grab the route guid, then the corresponding RouteNegotiator which performs
