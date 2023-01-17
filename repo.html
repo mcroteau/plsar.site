@@ -53,10 +53,31 @@
 
     <p>The setup allowing for persistence.</p>
 
+    <h3>Build.gradle</h3>
+
+    <pre><code>plugins {
+    id 'application'
+}
+
+group 'com.app'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+application{
+    mainClass.set('com.application.Main')
+}
+
+dependencies {
+    implementation 'net.plsar:plsar:1.0.1'
+}</code></pre>
+
     <h3>Main.java</h3>
 
+    <pre><code>package com.application;
 
-    <pre><code>
 public class Main {
     public static void main(String[] args){
         PLSAR plsar = new PLSAR(9001);
@@ -114,7 +135,9 @@ schemaConfig.setEnvironment(Environments.PRODUCTION);</code></pre>
         update, delete. We will inject this class into a user controller.</p>
 
 
-    <pre><code>import io.foo.model.*;
+    <pre><code>package com.application;
+
+import io.foo.model.*;
 import net.plsar.Dao;
 import net.plsar.annotations.Repository;
 
@@ -185,7 +208,9 @@ public class UserRepo {
         this makes the application.</p>
 
 
-    <pre><code>@Controller
+    <pre><code>package com.application;
+
+@Controller
 public class UserController {
 
     @Bind
@@ -210,9 +235,18 @@ public class UserController {
 
     <p>We have created a request controller that renders a user.
         We left it simple to get you started. Controllers must be annotated with
-        <code>@Controller</code> annotation in order for PLSA.R to register it within
-        the request negotiators. Repos can be injected with the <code>@Bind</code> annotation.
+        <code>@Controller</code> or <code>NetworkRouter</code> annotation in order for
+        PLSA.R to register it within the request negotiators. Repos can be injected with the
+        <code>@Bind</code> annotation.
         The name of the dependency needs to match 100% to the repo.</p>
+
+    <p>Run PLSA.R:</p>
+
+    <pre><code>gradle run</code></pre>
+
+    <p>Browse:</p>
+
+    <pre><code>localhost:9001</code></pre>
 
 
     <p class="pls">&copy;2023 Mike Croteau</p>
