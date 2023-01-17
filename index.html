@@ -71,11 +71,34 @@
 
         <h3>Dependency</h3>
         <pre>
-<code>implementation "net.plsar:plsar:1.10"</code></pre>
+<code>implementation "net.plsar:plsar:1.0.1"</code></pre>
+
+        <h3>Build.gradle</h3>
+
+        <pre><code>plugins {
+    id 'application'
+}
+
+group 'com.app'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+application{
+    mainClass.set('com.application.Main')
+}
+
+dependencies {
+    implementation 'net.plsar:plsar:1.0.1'
+}</code></pre>
 
         <h3>Main.java</h3>
 
-        <pre><code>public class Main {
+        <pre><code>package com.application;
+
+public class Main {
     public static void main(String[] args){
         PLSAR plsar = new PLSAR(9001);
         plsar.start();
@@ -84,17 +107,19 @@
 
         <h3>HelloController.java</h3>
 
-        <pre><code>import net.plsar.annotations.Controller;
+        <pre><code>package com.application;
+
+import net.plsar.annotations.NetworkRouter;
 import net.plsar.annotations.network.Get;
 import net.plsar.annotations.Text;
 
-@Controller
+@NetworkRouter
 public class HelloController {
 
     @Text
     @Get("/")
     public String index(){
-        return "hi";
+        return "ambient light";
     }
 
 }</code></pre>
