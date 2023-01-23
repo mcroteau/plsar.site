@@ -71,7 +71,7 @@
 
         <h3>Dependency</h3>
         <pre>
-<code>implementation "net.plsar:plsar:1.0.1"</code></pre>
+<code>implementation "net.plsar:plsar:1.20.0"</code></pre>
 
         <h3>Build.gradle</h3>
 
@@ -91,7 +91,7 @@ application{
 }
 
 dependencies {
-    implementation 'net.plsar:plsar:1.0.1'
+    implementation 'net.plsar:plsar:1.2.0'
 }</code></pre>
 
         <h3>Main.java</h3>
@@ -105,7 +105,7 @@ public class Main {
     }
 }</code></pre>
 
-        <h3>HelloController.java</h3>
+        <h3>HelloRouter.java</h3>
 
         <pre><code>package com.application;
 
@@ -114,7 +114,7 @@ import net.plsar.annotations.network.Get;
 import net.plsar.annotations.Text;
 
 @NetworkRouter
-public class HelloController {
+public class HelloRouter {
 
     @Text
     @Get("/")
