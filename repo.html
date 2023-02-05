@@ -39,17 +39,16 @@
         <li><a href="asp.html">aspects</a></li>
         <li><a href="sys.html">secure_systems</a></li>
         <li><a href="repo.html" class="active">persistent_systems</a></li>
-        <li><a href="akk.html">architecture</a></li>
         <li><a href="index.html">index</a></li>
     </ul>
     <br class="clear"/>
 
     <h1>PERSISTENT<br/>SYSTEM.S</h1>
 
-    <p>Almost 100% of the time, your system will require a database to store,
+    <p>Your system will require a database to store,
         search and retrieve information. PLSA.R comes with a builtin persistence layer
         with dependency injection, this boosts capacity potentially allowing the application
-        to handle hundreds of thousands concurrent requests.</p>
+        to handle tens of thousands concurrent requests.</p>
 
     <p>The setup allowing for persistence.</p>
 
@@ -71,7 +70,7 @@ application{
 }
 
 dependencies {
-    implementation 'net.plsar:plsar:1.0.1'
+    implementation 'net.plsar:plsar:1.30.0'
 }</code></pre>
 
     <h3>Main.java</h3>
