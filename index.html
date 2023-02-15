@@ -30,20 +30,20 @@
             <path class="s0" d="m29.4 33.4l-27.4-13.7 25.5-16.9z"/>
         </svg>
 
-        <h1 class="logo">PLSA.R</h1>
+        <h1 class="logo">STARGZR</h1>
     </a>
 
     <div class="content">
 
-        <ul class="navigation">
-            <li><a href="asp.html">aspects</a></li>
-            <li><a href="sys.html">secure_systems</a></li>
-            <li><a href="repo.html">persistent_systems</a></li>
-            <li><a href="index.html" class="active">index</a></li>
-        </ul>
-        <br class="clear"/>
+<!--        <ul class="navigation">-->
+<!--            <li><a href="asp.html">aspects</a></li>-->
+<!--            <li><a href="sys.html">secure_systems</a></li>-->
+<!--            <li><a href="repo.html">persistent_systems</a></li>-->
+<!--            <li><a href="index.html" class="active">index</a></li>-->
+<!--        </ul>-->
+<!--        <br class="clear"/>-->
 
-        <h1>PLSA.R</h1>
+        <h1>STARGZR</h1>
 
 
         <p>PLSAR is an Open Source Java Server + Framework for high demand, low latency requirements.
@@ -70,7 +70,7 @@
 
         <h3>Dependency</h3>
         <pre>
-<code>implementation "net.plsar:plsar:1.70.0"</code></pre>
+<code>implementation "net.plsar:stargzr:1.0.0"</code></pre>
 
         <h3>Build.gradle</h3>
 
@@ -90,7 +90,7 @@ application{
 }
 
 dependencies {
-    implementation 'net.plsar:plsar:1.70.0'
+    implementation 'net.plsar:stargzr:1.0.0'
 }</code></pre>
 
         <h3>Main.java</h3>
@@ -99,8 +99,8 @@ dependencies {
 
 public class Main {
     public static void main(String[] args){
-        PLSAR plsar = new PLSAR(9001);
-        plsar.start();
+        STARGZR stargzr = new STARGZR(1234);
+        stargzr.start();
     }
 }</code></pre>
 
@@ -123,16 +123,16 @@ public class HelloRouter {
 
 }</code></pre>
 
-        <p>PLSA.R runs via one command:</p>
+        <p>STARGZR runs via one command:</p>
 
         <pre><code>gradle run</code></pre>
 
         <p>Browse:</p>
 
-        <pre><code>localhost:9001</code></pre>
+        <pre><code>localhost:1234/</code></pre>
 
         <p>A special thanks to Java, Spring, Tomcat, Jetty, Python, Groovy, Node.
-        You guys pioneer.</p>
+        You guys pioneered..</p>
 
         <p style="text-align:center;"><a href="https://ae0n.net" style="border: none; " class="pls">
             <span style="margin:0px auto;text-align: center;display:inline-block;font-size:9px;">&copy;2023 Mike Croteau</span>
@@ -154,16 +154,6 @@ public class HelloRouter {
     </div>
 
     <br class="clear"/>
-
-<script>
-    let elements = document.getElementsByClassName('peoo')
-    for(z = 0; z < elements.length; z++){
-        let element = elements[z]
-        var x = new RandomObjectMover(element, window);
-        x.setSpeed(parseInt(140));
-        x.start();
-    }
-</script>
 
 
     <!-- Google tag (gtag.js) -->
