@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>PLSA.R : Architecture</title>
+    <title>PLSA.R : Open Source Java Server + API</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -17,8 +17,6 @@
     <script src="benefit/bsshh.js"></script>
 </head>
 <body>
-
-<div class="peoo square"></div>
 
 <a href="index.html" class="logo-wrapper">
 
@@ -37,33 +35,38 @@
 
     <ul class="navigation">
         <li><a href="asp.html">aspects</a></li>
-        <li><a href="sys.html">secure_systems</a></li>
-        <li><a href="repo.html">persistent_systems</a></li>
-        <li><a href="akk.html" class="active">architecture</a></li>
+        <li><a href="gs.html" class="active">getting started</a></li>
         <li><a href="index.html">index</a></li>
     </ul>
     <br class="clear"/>
 
-    <h1>Architecture</h1>
+    <h1 class="headline">GETTING<br/>STARTE.D</h1>
 
-    <img src="benefit/architecture.png" style="width: 100%"/>
+    <p>PLSA.R is an Open Source Framework for System Development.
+        We are going to try to simplify your life, if you are in the
+        Java World and have experience with Servlets and JSPs then
+        this will be a breeze in comparison and we would like to
+        make an even bolder attempt at simplifying your life if
+        you have developed .war applications. When I say container
+        development I am not referring to Docker or Kubernetes but
+        Jetty, Tomcat, Undertow or Wildfly. </p>
 
-    <h2>PartitionExecutors</h2>
+    <p>We feel that writing code is the best way to get a feel for something
+        so we are instead of boring you with verbiage, we instead are going to
+        give you a high level overview by writing an example app. </p>
 
-    <p>As a developer, you can define one or many. Each on is a foundational element. Each
-        PartitionExecutor is a separate thread. Each can hold one or many NetworkRequestExecutors.</p>
+    <p>Let’s write TAZR, an activity management application.</p>
 
-    <h2>NetworkRequestExecutor</h2>
+    <p>In this application we will give the user the ability to simply add activities to a list.</p>
 
-    <p>NetworkRequestExecutors wait to receive incoming requests. Each one holds a copy of a
-        RouteSessionGuid Map and a RouteNegotiators Map. A request comes in, the session key is
-        used to grab the route guid, then the corresponding RouteNegotiator which performs
-        the actual request.</p>
+    <p>Clone the PLSA.R repository @
+        <a href="http://github.com/plsa-r/plsa.r">http://github.com/plsa-r/plsa.r.git</a> and
+        browse to the root project plsa.r/ directory. You can run the project using:</p>
 
-    <h2>3:7</h2>
+    <pre><code>./gradlew tazr:run</code></pre>
 
-    <p>We found a configuration of 3/7 PartitionExecutors to NetworkRequestExecutor to be optimal.
-        300/700 the system can handle 10,000 concurrent requests.</p>
+    <p>A special thanks to Java, Spring, Tomcat, Jetty, Python, Groovy, Node, Ruby, Git.
+        You guys pioneered..</p>
 
     <p style="text-align:center;"><a href="https://ae0n.net" style="border: none; " class="pls">
         <span style="margin:0px auto;text-align: center;display:inline-block;font-size:9px;">&copy;2023 Mike Croteau</span>
@@ -86,16 +89,6 @@
 
 <br class="clear"/>
 
-<script>
-    let elements = document.getElementsByClassName('peoo')
-    for(z = 0; z < elements.length; z++){
-        let element = elements[z]
-        var x = new RandomObjectMover(element, window);
-        x.setSpeed(parseInt(140));
-        x.start();
-    }
-</script>
-
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9G7SYVHH7"></script>
@@ -109,3 +102,4 @@
 
 </body>
 </html>
+
