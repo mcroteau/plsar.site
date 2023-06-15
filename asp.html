@@ -48,9 +48,9 @@
     <p>With a conditional aspect allows you to check if a condition exists, then
     either renders enclosed html snippet or doesn't render anything at all.</p>
 
-    <pre><code>&lt;plsar:if spec="${condition}"&gt;
+    <pre><code>&lt;a:if spec="${condition}"&gt;
     code.
-&lt;/plsar:if&gt;</code></pre>
+&lt;/a:if&gt;</code></pre>
 
     <h3>Iterable Aspect</h3>
     <p>Iterable aspects allow you to iterate over cached data stored in the
@@ -58,13 +58,13 @@
 
     <pre><code>&lt;plsar:foreach items="${people}" var="person"&gt;
     ${person.name}
-&lt;/plsar:if&gt;</code></pre>
+&lt;/a:if&gt;</code></pre>
 
     <h3>Variable Aspects</h3>
     <p>Variable aspects allow the developer to set variable values
     to be used later. Example:</p>
 
-    <pre><code>&lt;plsar:set var="name" val="Bo Jackson"/&gt;
+    <pre><code>&lt;a:set var="name" val="Bo Jackson"/&gt;
  ...
  ${name}</code></pre>
 
